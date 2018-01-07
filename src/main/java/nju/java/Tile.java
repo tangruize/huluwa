@@ -9,7 +9,7 @@ public class Tile extends Thing2D {
     public Tile(int x, int y) {
         super(x, y);
 
-        URL loc = this.getClass().getClassLoader().getResource("tile.png");
+        URL loc = this.getClass().getClassLoader().getResource("ground.png");
         ImageIcon iia = new ImageIcon(loc);
         Image image = iia.getImage();
         this.setImage(image);

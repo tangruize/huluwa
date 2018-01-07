@@ -3,7 +3,6 @@ package nju.java;
 
 import javax.swing.JFrame;
 
-
 public final class Ground extends JFrame {
 
     private final int OFFSET = 30;
@@ -21,12 +20,7 @@ public final class Ground extends JFrame {
         setSize(field.getBoardWidth() + OFFSET,
                 field.getBoardHeight() + 2 * OFFSET);
         setLocationRelativeTo(null);
-        setTitle("Ground");
+        setTitle("Calabash Brothers Fight Evils");
     }
 
-
-    public static void main(String[] args) {
-        Ground ground = new Ground();
-        ground.setVisible(true);
-    }
 }
