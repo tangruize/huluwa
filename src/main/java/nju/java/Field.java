@@ -32,6 +32,7 @@ public class Field extends JPanel {
     private int aIndex, bIndex;
     private Thread playback = null;
 
+
     private String[] levels =
             {
                     ".c......f.\n" +
@@ -350,6 +351,8 @@ public class Field extends JPanel {
             g.drawString("Press 'r' to restart game!", 25, 20);
         } else if (badLeft == 0) {
             g.drawString("Press 'r' to go to next level!", 25, 20);
+        } else if (isPlaybackMode) {
+            g.drawString("Press 'r' to restart this level!", 25, 20);
         } else {
             g.drawString("Press 's' to start game!", 25, 20);
         }
@@ -446,6 +449,7 @@ public class Field extends JPanel {
         tile = null;
         clearThread();
         players.clear();
+        record.restoreSavedFileName();
         initWorld();
         record.init();
         if (completed) {

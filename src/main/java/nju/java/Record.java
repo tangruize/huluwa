@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Record {
     private static String argFileName = "huluwa.log";
     private String fileName = argFileName, inputFileName = argFileName;
+    private String savedFileName = null, savedFileNamePath = null;
     private File file;
     boolean isInited = false, isInitedInput = false;
     private FileOutputStream fileOutput;
@@ -34,7 +35,16 @@ public class Record {
         }
     }
 
+    public void restoreSavedFileName() {
+        if (savedFileName != null && savedFileNamePath != null) {
+            setFileName(savedFileNamePath, savedFileName);
+            savedFileName = savedFileNamePath = null;
+        }
+    }
+
     public void setInputAsOutput() {
+        savedFileName = fileName;
+        savedFileNamePath = fileNamePath;
         setFileName(inputFileNamePath, inputFileName);
     }
 
@@ -42,17 +52,6 @@ public class Record {
         isInited = false;
         milliseconds = getMilliseconds();
         file = new File(fileNamePath, fileName);
-//        if (!isContinue) {
-//            if (file.exists()) {
-//                file.delete();
-//            }
-//            try {
-//                file.createNewFile();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                return;
-//            }
-//        }
         try {
             fileOutput = new FileOutputStream(file, isContinue);
         } catch (FileNotFoundException e) {
@@ -60,6 +59,7 @@ public class Record {
             return false;
         }
         isInited = true;
+        savedFileName = savedFileNamePath = null;
         return file.length() == 0;
     }
 
