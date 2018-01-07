@@ -25,6 +25,7 @@ public class Record {
         if (fn != null && path != null) {
             fileName = fn;
             fileNamePath = path;
+            savedFileName = savedFileNamePath = null;
         }
     }
 
@@ -38,7 +39,6 @@ public class Record {
     public void restoreSavedFileName() {
         if (savedFileName != null && savedFileNamePath != null) {
             setFileName(savedFileNamePath, savedFileName);
-            savedFileName = savedFileNamePath = null;
         }
     }
 
