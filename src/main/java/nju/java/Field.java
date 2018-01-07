@@ -395,11 +395,15 @@ public class Field extends JPanel {
                     player.setAutoMode(true);
             } else if (!completed) {
                 if (key == KeyEvent.VK_L) {
-                    if (loadRecordFile())
+                    if (loadRecordFile()) {
+                        record.setInputAsOutput();
                         playBack(false);
+                    }
                 } else if (key == KeyEvent.VK_C) {
-                    if (loadRecordFile())
+                    if (loadRecordFile()) {
+                        record.setInputAsOutput();
                         playBack(true);
+                    }
                 } else if (!isPlaybackMode && key == KeyEvent.VK_W) {
                     saveRecordFile();
                 }

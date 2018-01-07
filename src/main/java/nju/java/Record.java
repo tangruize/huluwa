@@ -34,6 +34,10 @@ public class Record {
         }
     }
 
+    public void setInputAsOutput() {
+        setFileName(inputFileNamePath, inputFileName);
+    }
+
     public boolean init(boolean isContinue) {
         isInited = false;
         milliseconds = getMilliseconds();
