@@ -363,14 +363,14 @@ public class Field extends JPanel {
     public boolean loadRecordFile() {
         FileDialog d1 = new FileDialog(new JFrame("FileDialog"), "Open File", FileDialog.LOAD);
         d1.setVisible(true);
-        record.setInputFileName(d1.getFile());
+        record.setInputFileName(d1.getDirectory(), d1.getFile());
         return d1.getFile() != null;
     }
 
     public void saveRecordFile() {
         FileDialog d1 = new FileDialog(new JFrame("FileDialog"), "Save File", FileDialog.SAVE);
         d1.setVisible(true);
-        record.setFileName(d1.getFile());
+        record.setFileName(d1.getDirectory(), d1.getFile());
     }
 
     @Override

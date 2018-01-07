@@ -12,26 +12,32 @@ public class Record {
     private FileOutputStream fileOutput;
     private Scanner scanner;
     private int milliseconds = 0;
+    private String fileNamePath = ".", inputFileNamePath = ".";
 
     static void setArgFileName(String fn) {
         if (fn != null)
             argFileName = fn;
     }
 
-    public void setFileName(String fn) {
-        if (fn != null)
+
+    public void setFileName(String path, String fn) {
+        if (fn != null && path != null) {
             fileName = fn;
+            fileNamePath = path;
+        }
     }
 
-    public void setInputFileName(String fn) {
-        if (fn != null)
+    public void setInputFileName(String path, String fn) {
+        if (fn != null && path != null) {
+            inputFileNamePath = path;
             inputFileName = fn;
+        }
     }
 
     public boolean init(boolean isContinue) {
         isInited = false;
         milliseconds = getMilliseconds();
-        file = new File(fileName);
+        file = new File(fileNamePath, fileName);
 //        if (!isContinue) {
 //            if (file.exists()) {
 //                file.delete();
@@ -55,15 +61,6 @@ public class Record {
 
     public void init() {
         init(false);
-    }
-
-    public void init(String fn) {
-        setFileName(fn);
-        init();
-    }
-
-    public Record(String s) {
-        setFileName(s);
     }
 
     public Record() {
@@ -96,7 +93,7 @@ public class Record {
     public boolean initInput() {
         isInitedInput = false;
         try {
-            scanner = new Scanner(new File(inputFileName));
+            scanner = new Scanner(new File(inputFileNamePath, inputFileName));
         } catch (FileNotFoundException e) {
 //            e.printStackTrace();
             System.err.println("Cannot open " + inputFileName);
